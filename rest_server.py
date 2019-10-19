@@ -332,7 +332,7 @@ def not_found_400(error):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 @app.errorhandler(404)
 def not_found_404(error):
-    return make_response(jsonify( { 'error': 'Not found' } ), 404)
+    return make_response(jsonify( { 'error': 'Page Not found' } ), 404)
     # message = '404 - not found'
     # secondary_message=''
     # error_code = 404
