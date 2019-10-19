@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/sign-in/ -->
+<html lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!--
+        <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
+        -->
+        <link rel="icon" href="../static/ganimides_logo.gif">
+
+        <title>mobile verification</title>
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+        <!-- Bootstrap core CSS -->
+        <link href="../static/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href="../static/signin.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signoin.css') }}" />
+
+        <!-- load java script form google -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- load recaptcha form google -->
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    </head>
+    <style>
+        .digit {
+            margin: 0 1px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 40px;
+            border: solid 1px #ccc;
+            box-shadow: 0 0 5px #ccc inset;
+            outline: none;
+            width: 2.5rem;
+            /*10%;*/
+            transition: all .2s ease-in-out;
+            border-radius: 3px;
+            color: red;
+        }
+    </style>
+
+    <body class="text-center bg-white">
+        <div class="container-fluid bg-white fixed-top">
+            <!--img class="mb-4" src="{{ url_for('static', filename='bootstrap-solid.svg') }}" alt="" width="72" height="72">-->
+            <!--<img class="mb-2" src="../static/bootstrap-solid.svg" alt="" width="72" height="72">-->
+            <img class="" src="../static/ganimides_logo.gif" alt="" width="72" height="72">
+            <h1 class="font-weight-bold" style="font-size:5vw;color:blue">leandrou-technology-forward-ltd</h1>
+                <div class="rounded pb-2" style="background-color:#F8F8F8;">
+                    <div>
+                        <h5 class="" style="font-size:3vw;xcolor:gray">Please enter the 6-digit verification code we sent via SMS</h5>
+                        <span style="font-size:3vw;color:gray">(we want to make sure it's you before we commit your subscription)</span>
+                        <form class="form-verify">
+                            <div class="mt-2 mb-2 p-1 text-center">
+                                <input autofocus class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit1" onKeyup="autotab(this,'digit2')" />
+                                <input class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit2" onKeyup="autotab(this,'digit3')" />
+                                <input class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit3" onKeyup="autotab(this,'digit4')" />
+                                <input class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit4" onKeyup="autotab(this,'digit5')" />
+                                <input class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit5" onKeyup="autotab(this,'digit6')" />
+                                <input class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit6" />
+                            </div>
+                            <div class="form-group d-flex justify-content-center">
+                                <div class="g-recaptcha" data-sitekey="6LcD3XkUAAAAABAoO2p4WOoBGg6uRyCoVCcGNCFV"></div>
+                            </div>
+                            <div class="">
+                                <input class="btn btn-primary" type="submit" value="Verify" name="btn_verify">
+                            </div>
+                            <div class="mt-2 mb-2">
+                                Didn't receive the code?<br />
+                                <input class="btn btn-outline-info" type="submit" value="Send code again" name="btn_new_sms">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <p class="p-2 text-muted small">© leandrou-technology-forward 2019</p>
+        </div>
+        <!--
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        -->
+        <script type="text/javascript">
+            function autotab(current, nextFieldID) {
+                if (current.getAttribute &&
+                    current.value.length == current.getAttribute("maxlength")) {
+                    document.getElementById(nextFieldID).focus()
+                    /*to.focus()*/
+                }
+            }
+        </script>
+
+
+    </body>
+
+</html>

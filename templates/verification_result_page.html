@@ -1,0 +1,112 @@
+{% if not logo %}
+{% set logo = 'ganimides_logo.gif' %}
+{% endif %}
+{% if not application_name %}
+{% set application_name = 'leandrou-technology-forward-ltd' %}
+{% endif %}
+{% if not application_color %}
+{% set application_color = 'blue' %}
+{% endif %}
+
+{% if not copywrite %}
+{% set copywrite = 'leandrou-technology-forward-ltd, 2019' %}
+{% endif %}
+{% if not title %}
+{% set title = 'code verification' %}
+{% endif %}
+
+{% if result == 'success' %}
+{% set msg_color='green' %}
+{% set error_code=0 %}
+{% elif result == 'error' %}
+{% set msg_color='red' %}
+{% else %}
+{% set msg_color='orange' %}
+{% endif %}
+
+{% if not error_code %}
+{% if result == 'error' %}
+{% set error_code=101 %}
+{% else %}
+{% set error_code=11 %}
+{% endif %}
+{% endif %}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="{{ url_for('static', filename=logo)}}">
+
+    <title>{{title}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="../static/signin.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signin.css') }}" /> -->
+
+    <!-- load java script form google -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- load recaptcha form google -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+  </head>
+  <style>
+    .digit {
+      margin: 0 1px;
+      text-align: center;
+      line-height: 60px;
+      font-size: 40px;
+      border: solid 1px #ccc;
+      box-shadow: 0 0 5px #ccc inset;
+      outline: none;
+      width: 2.5rem;
+      /*10%;*/
+      transition: all .2s ease-in-out;
+      border-radius: 3px;
+      color: red;
+    }
+  </style>
+
+  <body class="text-center bg-white">
+    <div class="container-fluid bg-white fixed-top column">
+      <img class="" src="{{ url_for('static', filename=logo)}}" alt="" width="72" height="72">
+      <h1 class="font-weight-bold" style="font-size:5vw;color: {{application_color}}">{{application_name}}</h1>
+      <div class="rounded m-3 p-2" style="background-color:#F8F8F8;">
+        {%if result == 'error'%}
+        <h5 class="" style="font-size:10vw;color:Black">Oops!</h5>
+        {% endif %}
+        <h5 class="" style="font-size:4vw;color:{{msg_color}}">{{message}}</h5>
+        {% if secondary_message %}
+        <span style="font-size:3vw;color:{{msg_color}}">{{secondary_message}}</span>
+        {% endif %}
+        {% if message_description %}
+        <span style="font-size:3vw;color:gray">{{message_description}}</span>
+        {% endif %}
+      </div>
+
+      <div class="mt-2 mb-2 p-1 text-center">
+        {% if error_code > 400 %}
+        <img class="align-self-center mb-4" src="{{ url_for('static', filename='technical_error.png') }}" style="width:300px">
+        {% endif %}
+      </div>
+      <div class="mt-2 mb-2 p-1 text-center">
+        <p class="p-2 text-muted small">© {{copywrite}}</p>
+      </div>
+    </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,124 @@
+    {% if not logo %}
+    {% set logo = 'ganimides_logo.gif' %}
+    {% endif %}
+    {% if not application_name %}
+    {% set application_name = 'leandrou-technology-forward-ltd' %}
+    {% endif %}
+    {% if not application_color %}
+    {% set application_color = 'blue' %}
+    {% endif %}
+    {% if not message %}
+    {% set message = 'Please enter the 6-digit verification code we sent via SMS' %}
+    {% endif %}
+    {% if not secondary_message %}
+    {% set secondary_message = "(we want to make sure it's you before we commit your subscription)" %}
+    {% endif %}
+    {% if not copywrite %}
+    {% set copywrite = 'leandrou-technology-forward-ltd, 2019' %}
+    {% endif %}
+    {% if not title %}
+    {% set title = 'code verification' %}
+    {% endif %}
+    {% set disabled='' %}
+    {% set submit_button_style='btn-primary' %}
+    {% if disable_input %}
+    {% set disabled='disabled' %}
+    {% set submit_button_style='btn-secondary' %}
+    {% endif %}
+
+    
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="icon" href="{{ url_for('static', filename=logo)}}">
+
+        <title>{{title}}</title>
+
+        <!-- Bootstrap core CSS -->
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}" /> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+        <!-- Custom styles for this template -->
+        <!-- <link href="../static/signin.css" rel="stylesheet"> -->
+        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='signin.css') }}" /> -->
+
+        <!-- load java script form google -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- load recaptcha form google -->
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+
+    </head>
+    <style>
+        .digit {
+            margin: 0 1px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 40px;
+            border: solid 1px #ccc;
+            box-shadow: 0 0 5px #ccc inset;
+            outline: none;
+            width: 2.5rem;
+            /*10%;*/
+            transition: all .2s ease-in-out;
+            border-radius: 3px;
+            color: red;
+        }
+    </style>
+
+    <body class="text-center bg-white">
+        <div class="container-fluid bg-white fixed-top">
+            <img class="" src="{{ url_for('static', filename=logo)}}" alt="" width="72" height="72">
+            <h1 class="font-weight-bold" style="font-size:5vw;color:{{application_color}}">{{application_name}}
+            </h1>
+                <div class="rounded pb-2" style="background-color:#F8F8F8;">
+                    <div>
+                        <h5 class="" style="font-size:3vw;xcolor:gray">{{message}}</h5>
+                        <span style="font-size:3vw;color:gray">{{secondary_message}}</span>
+                        <form class="form-verify" method="post" >
+                            <div class="mt-2 mb-2 p-1 text-center">
+                                <!-- input fields must have a name to be submitted -->
+                                <input autofocus {{disabled}} class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit1" name="digit1" onKeyup="autotab(this,'digit2')" />
+                                <input {{disabled}} class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit2" name="digit2" onKeyup="autotab(this,'digit3')" />
+                                <input {{disabled}} class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit3" name="digit3" onKeyup="autotab(this,'digit4')" />
+                                <input {{disabled}} class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit4" name="digit4" onKeyup="autotab(this,'digit5')" />
+                                <input {{disabled}} class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit5" name="digit5" onKeyup="autotab(this,'digit6')" />
+                                <input {{disabled}} class="digit" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" id="digit6" name="digit6" />
+                            </div>
+                            {% if error %}
+                            <h5 class="" style="font-size:3vw;color:red">{{error}}</h5>
+                            {% endif %}
+                            <div class="form-group d-flex justify-content-center">
+                                <div class="g-recaptcha" data-sitekey="6LcD3XkUAAAAABAoO2p4WOoBGg6uRyCoVCcGNCFV"></div>
+                            </div>
+                            <div class="">
+                                <input {{disabled}} class="btn {{submit_button_style}} btn-embossed" type="submit" value="Verify" name="btn_verify">
+                                <!-- <button {{disabled}} class="btn btn-primary btn-embossed" type="submit" value="Verify" name="btn_verify">Submit</button> -->
+                            </div>
+                            <div class="mt-2 mb-2">
+                                Didn't receive the code?<br />
+                                <input class="btn btn-outline-info" type="submit" value="send Code again" name="btn_new_code">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <p class="p-2 text-muted small">© {{copywrite}}</p>
+        </div>
+
+        <script type="text/javascript">
+            function autotab(current, nextFieldID) {
+                if (current.getAttribute &&
+                    current.value.length == current.getAttribute("maxlength")) {
+                    document.getElementById(nextFieldID).focus()
+                }
+            }
+        </script>
+
+
+    </body>
+
+</html>

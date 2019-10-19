@@ -1,0 +1,2 @@
+cd C:\Users\User\Documents\my Projects\Systems_Development\Development_Environment\ganimides_restapiserver
+python "C:\Users\User\Documents\my Projects\Systems_Development\Development_Environment\ganimides_restapiserver_v2\rest_serverV3.py"
