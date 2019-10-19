@@ -314,6 +314,7 @@ def unauthorized():
     return render_template('verification_result_page.html', message=message, secondary_message=secondary_message, result=result, error_code=error_code)
     # return make_response(jsonify( { 'error': 'Unauthorized access' } ), 403)
     # return 403 instead of 401 to prevent browsers from displaying the default auth dialog
+    # return render_template('404.html', message=message, secondary_message=secondary_message, result=result, error_code=error_code)
 ##########################################################################################################################
 ##########################################################################################################################
 ##########################################################################################################################
@@ -329,6 +330,7 @@ def not_found_400(error):
     # error_code = 404
     # result="error"
     # return render_template('verification_result_page.html', message=message, secondary_message=secondary_message, result=result, error_code=error_code)
+    # return render_template('400.html', message=message, secondary_message=secondary_message, result=result, error_code=error_code)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 @app.errorhandler(404)
 def not_found_404(error):
@@ -338,6 +340,7 @@ def not_found_404(error):
     # error_code = 404
     # result="error"
     # return render_template('verification_result_page.html', message=message, secondary_message=secondary_message, result=result, error_code=error_code)
+    # return render_template('404.html', message=message, secondary_message=secondary_message, result=result, error_code=error_code)
 ##########################################################################################################################
 ##########################################################################################################################
 ##########################################################################################################################
